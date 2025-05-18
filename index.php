@@ -8,7 +8,7 @@ if (isset($_SESSION['alogin'])) {
 session_start(); 
 $host = "localhost";     // Database server (usually "localhost")
 $username = "root";      // MySQL username (default is often "root")
-$password = "";          // MySQL password (default is often empty)
+$password = "@#Rafsan123";          // MySQL password (default is often empty)
 $database = "nid";   // Your database name
 $conn = mysqli_connect($host, $username, $password, $database);
 
@@ -189,9 +189,9 @@ $balance = $row2['balance'];
           <i class="fas fa-search"></i> সার্চ করুন
       </button>
 
-      <a href="https://t.me/cyberpunk6251" target="_blank" class="btn">
+      <!-- <a href="https://t.me/cyberpunk6251" target="_blank" class="btn">
          🚀 আমাদের গ্রুপে যোগ দিন
-      </a>
+      </a> -->
    
 
     </form>
