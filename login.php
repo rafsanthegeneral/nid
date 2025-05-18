@@ -7,7 +7,6 @@ include('includes/config.php');
 
 if (isset($_SESSION['alogin'])) {
     header('location:index.php');
-    exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,9 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $query->fetch(PDO::FETCH_ASSOC);
         $_SESSION['alogin'] = $result['username'];
         $_SESSION['balance'] = $result['balance']; // ব্যালেন্স সেশন এ রাখছি
-
+         
         header('location:index.php');
-        exit();
+        if ($result['uid'] == 0)
+        {
+            header('location:add-user.php');
+        }
+    
     } else {
         echo "<script>alert('Invalid Username');</script>";
     }

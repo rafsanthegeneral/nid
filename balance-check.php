@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // ১. ডাটাবেজ কানেকশন তৈরি করা (উদাহরণ: MySQL)
         $servername = "localhost";
         $dbusername = "root";
-        $password = "@#Rafsan123";
+        $password = "";
         $dbname = "nid";
 
         // কানেকশন তৈরি

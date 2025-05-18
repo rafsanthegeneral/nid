@@ -3,8 +3,22 @@ include('includes/config.php');
 
 if (isset($_SESSION['alogin'])) {
     header('location:index.php');
-    exit();
+  
 }
+session_start(); 
+$host = "localhost";     // Database server (usually "localhost")
+$username = "root";      // MySQL username (default is often "root")
+$password = "";          // MySQL password (default is often empty)
+$database = "nid";   // Your database name
+$conn = mysqli_connect($host, $username, $password, $database);
+
+$user = $_SESSION['alogin'];
+$sql = 'SELECT * FROM users where username = "'.$user.'"';
+$result = mysqli_query($conn, $sql);
+$row2 = $result->fetch_assoc();
+$balance = $row2['balance'];
+
+//ng null coalescing operator to provide default value if not found
 ?>
 
 <!DOCTYPE html>
@@ -149,6 +163,10 @@ if (isset($_SESSION['alogin'])) {
 <body>
   <div class="container">
     <h1>🔍 ServerCopy</h1>
+    <h3>User: <?php    echo $_SESSION['alogin'] ?> <br>Balance : <?php  echo $balance ?></h3>
+    <a href="logout.php" target="_blank" class="">
+           Logout
+      </a>
     <marquee onmouseover="this.stop()" onmouseout="this.start()" behavior="scroll" direction="left">
         সকলের কাছে বিনীত অনুরোধ যে অনুগ্রহ করে আমাদের সকল চ্যানেলের জয়েন থাকবেন এর থেকে আরো ভালো কিছু দেওয়ার চেষ্টা করব ধন্যবাদ আদেশক্রমে এডমিন।
     </marquee>
@@ -174,6 +192,8 @@ if (isset($_SESSION['alogin'])) {
       <a href="https://t.me/cyberpunk6251" target="_blank" class="btn">
          🚀 আমাদের গ্রুপে যোগ দিন
       </a>
+   
+
     </form>
   </div>
 

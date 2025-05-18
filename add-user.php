@@ -1,12 +1,24 @@
 <?php
-// ডাটাবেজ কানেকশন
+if (!isset($_SESSION['alogin'])) {
+    header('Location: login.php');
+    exit(); // exit() is preferred over die() for readability
+}
 $servername = "localhost"; // ডাটাবেজ সার্ভারের নাম
 $username = "root"; // ডাটাবেজ ইউজারনেম
-$password = "@#Rafsan123"; // ডাটাবেজ পাসওয়ার্ড
-$dbname = "nid"; // ডাটাবেজের নাম
+$password = ""; // ডাটাবেজ পাসওয়ার্ড
+$dbname = "nid"; 
+$connn = mysqli_connect($servername, $username, $password, $dbname);
 
+$user = $_SESSION['alogin'];
+$sql = 'SELECT * FROM users where username = "'.$user.'"';
+$result = mysqli_query($connn, $sql);
+$row2 = $result->fetch_assoc();
+$uid = $row2['uid'];
+if ($uid == 1) {
+    header('Location: login.php');
+    exit(); // exit() is preferred over die() for readability
+}
 
-// কানেকশন তৈরি
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // কানেকশন চেক করা
@@ -27,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $message_type = 'error';
         } else {
             // ইউজার ডাটাবেজে অ্যাড করা
-            $sql_insert = "INSERT INTO users (`username`, balance) VALUES (?, ?)";
+            $sql_insert = "INSERT INTO users (`username`, balance,uid) VALUES (?, ?, 1)";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bind_param("si", $username, $balance);
             if ($stmt->execute()) {

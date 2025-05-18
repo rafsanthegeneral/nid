@@ -1,6 +1,6 @@
 <?php
-session_start();
-// error_reporting(1);
+session_start(); error_reporting(0);
+ini_set('display_errors', 0);
 include('includes/db.php');
 include('includes/config.php');
 
@@ -88,6 +88,7 @@ if(isset($_POST['nid'], $_POST['dob'])){
 
         }else{
 			echo '<script>alert("Nid info not found")</script>'; die();
+            
 		}
 	}else{
 		echo '<script>alert("আপনার পর্যাপ্ত পরিমাণ ব্যালেন্স নাই প্লিজ রিচার্জ করুন")</script>'; die();
