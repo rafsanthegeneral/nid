@@ -61,7 +61,7 @@ if(isset($_POST['nid'], $_POST['dob'])){
 			$postCode  = $data->permanent_address->post_office;
 			$upozila  = $data->permanent_address->permanent_address;
 			$birthPlace  = $data->current_address->current_address;
-
+  
             $dob = $_POST['dob'];
 
 			$dateOfBirth = date("d M Y", strtotime($dob));
@@ -71,7 +71,7 @@ if(isset($_POST['nid'], $_POST['dob'])){
 			$address = "বাসা/হোল্ডিং: ".$data->permanent_address->village_road.",  ডাকঘর: ".$data->permanent_address->post_office.", ".$data->permanent_address->ward.", ".$data->permanent_address->permanent_address;
 
             $permanentAddress = $data->permanent_address->permanent_address;
-            $presentAddress = $data->permanent_address->permanent_address;
+            $presentAddress = $data->current_address->current_address;
 
 			$gender = $data->gender;
 			$maritalStatus = "";
@@ -449,7 +449,7 @@ if(isset($_POST['server']) && $_POST['server'] == 'new'){
     <div style="position: absolute; left: 37%; top: 40.5%; width: auto; font-size: 18px; color: rgb(7, 7, 7);">জন্মস্থান</div>
 
     <div id="voter_area" style="position: absolute; left: 55%; top: 40.5%; width: auto; font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: rgb(7, 7, 7);">
-        <?php echo $birthPlace; ?>
+     
     </div>
     <div style="position: absolute; left: 37%; top: 43.5%; width: auto; font-size: 18px; color: rgb(7, 7, 7);"><b>ব্যক্তিগত তথ্য</b></div>
     <div style="position: absolute; left: 37%; top: 46%; width: auto; font-size: 18px; color: rgb(7, 7, 7);">নাম (বাংলা)</div>
