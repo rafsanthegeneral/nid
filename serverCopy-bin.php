@@ -476,7 +476,7 @@ if(isset($_POST['server']) && $_POST['server'] == 'new'){
     <div style="position: absolute; left: 37%; top: 73.2%; width: auto; font-size: 18px; color: rgb(7, 7, 7);"><b>বর্তমান ঠিকানা</b></div>
 
     <div id="present_addr" style="position: absolute; left: 37%; top: 75.5%; width: 48%; font-size: 16px; color: rgb(7, 7, 7);">
-        <?php echo $presentAddress; ?>
+        <?php echo $presentAddress; ?> 
     </div>
 
     <div style="position: absolute; left: 37%; top: 82.1%; width: auto; font-size: 18px; color: rgb(7, 7, 7);"><b>স্থায়ী ঠিকানা</b></div>

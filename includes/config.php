@@ -47,10 +47,10 @@ function nidInfo($n, $d){
 	return json_decode($contents);
 }
 
-function convertToBanglaNumerals($number) {
-    $englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    $banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-    return str_replace($englishDigits, $banglaDigits, $number);
-}   
+// function convertToBanglaNumerals($number) {
+//     $englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+//     $banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+//     return str_replace($englishDigits, $banglaDigits, $number);
+// }   
 
 // nidInfo('19758517695481989','1975-09-10');
