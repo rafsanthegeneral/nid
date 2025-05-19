@@ -1,11 +1,14 @@
 <?php
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 if (!isset($_SESSION['alogin'])) {
     header('Location: login.php');
     exit(); // exit() is preferred over die() for readability
 }
 $servername = "localhost"; // ডাটাবেজ সার্ভারের নাম
 $username = "root"; // ডাটাবেজ ইউজারনেম
-$password = ""; // ডাটাবেজ পাসওয়ার্ড
+$password = "@#Rafsan123"; // ডাটাবেজ পাসওয়ার্ড
 $dbname = "nid"; 
 $connn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -14,7 +17,7 @@ $sql = 'SELECT * FROM users where username = "'.$user.'"';
 $result = mysqli_query($connn, $sql);
 $row2 = $result->fetch_assoc();
 $uid = $row2['uid'];
-if ($uid == 1) {
+if ($uid != 0) {
     header('Location: login.php');
     exit(); // exit() is preferred over die() for readability
 }

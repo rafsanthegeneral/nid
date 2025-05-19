@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
 
     // ডাটাবেস থেকে username যাচাই
-    $sql = "SELECT id, username, balance FROM users WHERE username = :username";
+    $sql = "SELECT id, username, balance,uid FROM users WHERE username = :username";
     $query = $dbh->prepare($sql);
     $query->bindParam(':username', $username, PDO::PARAM_STR);
     $query->execute();
@@ -22,13 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $query->fetch(PDO::FETCH_ASSOC);
         $_SESSION['alogin'] = $result['username'];
         $_SESSION['balance'] = $result['balance']; // ব্যালেন্স সেশন এ রাখছি
-         
-        header('location:index.php');
+        $_SESSION['uid'] = $result['uid'];
+       
         if ($result['uid'] == 0)
         {
             header('location:add-user.php');
         }
-    
+     header('location:index.php');
     } else {
         echo "<script>alert('Invalid Username');</script>";
     }
@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <button type="submit">Login</button>
-        <button type="button" class="join-btn" onclick="window.open('https://t.me/mjmodlab', '_blank')">Join Channel</button>
+        
     </form>
 </div>
 
