@@ -36,6 +36,7 @@ function nidInfo($n, $d){
 	$api = "https://zeroapis.42web.io/api/tk.php?nid=$n&dob=$d";
 	
 	$curl = curl_init();
+    // curl_setopt($curl, CURLOPT_HEADER, 1);
 	curl_setopt($curl, CURLOPT_URL, $api);
 	curl_setopt($curl, CURLOPT_TIMEOUT, 30);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -44,7 +45,7 @@ function nidInfo($n, $d){
 	curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
 	$contents = curl_exec($curl);
 	curl_close($curl);
-	return json_decode($contents);
+	return json_decode($contents,true);
 }
 
 // function convertToBanglaNumerals($number) {

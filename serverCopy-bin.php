@@ -1,6 +1,6 @@
 <?php
-session_start(); error_reporting(0);
-ini_set('display_errors', 0);
+session_start(); error_reporting(1);
+ini_set('display_errors', 1);
 include('includes/db.php');
 include('includes/config.php');
 
@@ -41,47 +41,49 @@ if(isset($_POST['nid'], $_POST['dob'])){
 	    
 		$json = nidInfo($_POST['nid'], $_POST['dob']);
         $data = $json;
+        echo var_dump($data);
+        die();
 
 		if(
-			isset($data->name_bn) AND
-			!empty($data->name_bn) AND
-			isset($data->name_en) AND
-			!empty($data->name_en)
+			isset($data['name bn']) AND
+			!empty($data['name bn']) AND
+			isset($data['name en']) AND
+			!empty($data['name en'])
 		) {
 			
-			$userImg     = $data->photo_url;
-			$name  = $data->name_bn;
-			$nameEn = $data->name_en;
-			$nationalId = $data->national_id;
-			$pin         = $data->pin;
+			$userImg     = $data['photo_url'];
+			$name  = $data['name_bn'];
+			$nameEn = $data['name_en'];
+			$nationalId = $data['national_id'];
+			$pin         = $data['pin'];
 			// $occupationBn   = $data->occupationBn;
 			// $father  = $data->father;
 			// $mother  = $data->mother;
 			// $spouse  = $data->spouse;
-			$postCode  = $data->permanent_address->post_office;
-			$upozila  = $data->permanent_address->permanent_address;
-			$birthPlace  = $data->current_address->current_address;
+			$postCode  = $data['permanent_address']['post_office'];
+			$upozila  = $data['permanent_address']['upazila'];
+			$birthPlace  = $data['current_address']['district'];
   
             $dob = $_POST['dob'];
 
 			$dateOfBirth = date("d M Y", strtotime($dob));
 
-			$bloodGroup = $data->bloodGroup;
+			$bloodGroup = "N/A";
 
-			$address = "বাসা/হোল্ডিং: ".$data->permanent_address->village_road.",  ডাকঘর: ".$data->permanent_address->post_office.", ".$data->permanent_address->ward.", ".$data->permanent_address->permanent_address;
+			$address = "বাসা/হোল্ডিং: ".$data['presentHomeOrHoldingNo'].",  ডাকঘর: ".$data['current_address']['post_office'].", ".$data['current_address']['ward'].", ".$data['current_address']['upazila'];
 
-            $permanentAddress = $data->permanent_address->permanent_address;
-            $presentAddress = $data->current_address->current_address;
+            $permanentAddress = $data['permanent_address']['raw_address'];
+            $presentAddress = $data['current_address']['raw_address'];
 
-			$gender = $data->gender;
+			$gender = 'N/A';
 			$maritalStatus = "";
-			$religion = $data->religion;
+			$religion = "N/A";
 
-            $nidFather = $data->nidFather;
-            $nidMother   = $data->nidMother;
-            $voterAreaCode = $data->voterAreaCode;
+            $nidFather = "N/A";
+            $nidMother   = "N/A";
+            $voterAreaCode ="N/A";
 
-            $qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=". urlencode($data->name_en.' '.$data->national_id.' '.$_POST['dob']);
+            $qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=". urlencode($data["name en"].' '.$data["national_id"].' '.$_POST['dob']);
 
 			$sql2 = "UPDATE users SET balance = balance - $cc_server_unofficial_price WHERE username = '$username'";
             mysqli_query($link, $sql2);
