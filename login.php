@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query = $dbh->prepare($sql);
     $query->bindParam(':username', $username, PDO::PARAM_STR);
     $query->execute();
-
+ 
     if ($query->rowCount() > 0) {
         $result = $query->fetch(PDO::FETCH_ASSOC);
         $_SESSION['alogin'] = $result['username'];
