@@ -8,7 +8,7 @@ if (!isset($_SESSION['alogin'])) {
 }
 $servername = "localhost"; // ডাটাবেজ সার্ভারের নাম
 $username = "root"; // ডাটাবেজ ইউজারনেম
-$password = "@#Rafsan123"; // ডাটাবেজ পাসওয়ার্ড
+$password = ""; // ডাটাবেজ পাসওয়ার্ড
 $dbname = "nid"; 
 $connn = mysqli_connect($servername, $username, $password, $dbname);
 

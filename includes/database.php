@@ -2,5 +2,5 @@
 // exportba_nid
 $host = "localhost"; 
 $user = "root";
-$pass = "@#Rafsan123";
+$pass = "";
 $name = "nid";

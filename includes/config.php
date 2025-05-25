@@ -33,7 +33,7 @@ function dd($dd)
 
 function nidInfo($n, $d){
 
-	$api = "https://api.export-bangla.com/index.php?code=kobra&nid=$n&dob=$d";
+	$api = "https://zeroapis.42web.io/api/tk.php?nid=$n&dob=$d";
 	
 	$curl = curl_init();
 	curl_setopt($curl, CURLOPT_URL, $api);

@@ -8,7 +8,7 @@ if (isset($_SESSION['alogin'])) {
 session_start(); 
 $host = "localhost";     // Database server (usually "localhost")
 $username = "root";      // MySQL username (default is often "root")
-$password = "@#Rafsan123";          // MySQL password (default is often empty)
+$password = "";          // MySQL password (default is often empty)
 $database = "nid";   // Your database name
 $conn = mysqli_connect($host, $username, $password, $database);
 
