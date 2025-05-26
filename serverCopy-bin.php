@@ -41,8 +41,6 @@ if(isset($_POST['nid'], $_POST['dob'])){
 	    
 		$json = nidInfo($_POST['nid'], $_POST['dob']);
         $data = $json;
-        echo var_dump($data);
-        die();
 
 		if(
 			isset($data['name bn']) AND
@@ -52,8 +50,8 @@ if(isset($_POST['nid'], $_POST['dob'])){
 		) {
 			
 			$userImg     = $data['photo_url'];
-			$name  = $data['name_bn'];
-			$nameEn = $data['name_en'];
+			$name  = $data['name bn'];
+			$nameEn = $data['name en'];
 			$nationalId = $data['national_id'];
 			$pin         = $data['pin'];
 			// $occupationBn   = $data->occupationBn;
@@ -62,7 +60,7 @@ if(isset($_POST['nid'], $_POST['dob'])){
 			// $spouse  = $data->spouse;
 			$postCode  = $data['permanent_address']['post_office'];
 			$upozila  = $data['permanent_address']['upazila'];
-			$birthPlace  = $data['current_address']['district'];
+			$birthPlace  = $data['permanentDistrict'];
   
             $dob = $_POST['dob'];
 
@@ -78,7 +76,8 @@ if(isset($_POST['nid'], $_POST['dob'])){
 			$gender = 'N/A';
 			$maritalStatus = "";
 			$religion = "N/A";
-
+            $father = $data['father_name'];
+            $mother =  $data['mother_name'];
             $nidFather = "N/A";
             $nidMother   = "N/A";
             $voterAreaCode ="N/A";
@@ -451,7 +450,7 @@ if(isset($_POST['server']) && $_POST['server'] == 'new'){
     <div style="position: absolute; left: 37%; top: 40.5%; width: auto; font-size: 18px; color: rgb(7, 7, 7);">জন্মস্থান</div>
 
     <div id="voter_area" style="position: absolute; left: 55%; top: 40.5%; width: auto; font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: rgb(7, 7, 7);">
-     
+     <? echo $birthPlace; ?>
     </div>
     <div style="position: absolute; left: 37%; top: 43.5%; width: auto; font-size: 18px; color: rgb(7, 7, 7);"><b>ব্যক্তিগত তথ্য</b></div>
     <div style="position: absolute; left: 37%; top: 46%; width: auto; font-size: 18px; color: rgb(7, 7, 7);">নাম (বাংলা)</div>

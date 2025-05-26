@@ -33,7 +33,7 @@ function dd($dd)
 
 function nidInfo($n, $d){
 
-	$api = "https://zeroapis.42web.io/api/tk.php?nid=$n&dob=$d";
+	$api = "https://zeroapis.42web.io/api/cobra.php?nid=$n&dob=$d";
 	
 	$curl = curl_init();
     // curl_setopt($curl, CURLOPT_HEADER, 1);
